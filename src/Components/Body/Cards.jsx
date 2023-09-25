@@ -25,7 +25,7 @@ const Cards = ({ card }) => {
     <div>
       <Link to={`card/${id}`}>
         <div style={titleBgStyle} className="rounded-xl">
-          <img className="w-full" src={description_image} alt="" />
+          <img className="w-full rounded-t-xl" src={description_image} alt="" />
           <div style={textStyle} className="p-4">
             <p className=" font-medium">
               <span

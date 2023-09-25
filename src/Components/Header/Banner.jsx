@@ -6,11 +6,11 @@ const Banner = () => {
       </h1>
       <div className="flex justify-center items-center">
         <input
-          className="border focus:outline-none rounded-l-lg px-4 py-[11px] w-80 lg:w-[400px]"
+          className="border focus:outline-1 outline-offset-0 rounded-l-lg px-4 py-[11px] w-80 lg:w-[400px]"
           type="search"
           placeholder="Search here...."
         />
-        <button className="btn btn-ghost normal-case rounded-l-[0px] rounded-r-lg bg-color-1 hover:bg-[#ff444aaa] font-semibold text-white px-7">
+        <button className="btn btn-ghost normal-case rounded-l-[0px] rounded-r-lg bg-color-1 hover:bg-[#db080f] font-semibold text-white -ml-1 px-7">
           Search
         </button>
       </div>
