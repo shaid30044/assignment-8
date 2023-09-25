@@ -31,7 +31,7 @@ const Cards = ({ card }) => {
             <p className=" font-medium">
               <span
                 style={categoryBgStyle}
-                className="rounded-[4px] px-[10px] py-[2px]"
+                className="rounded-[4px] px-[10px] pt-[2px] pb-[3px]"
               >
                 {category}
               </span>
