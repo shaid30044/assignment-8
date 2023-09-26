@@ -19,7 +19,7 @@ const Donation = () => {
 
   return (
     <div className="mx-10 lg:mx-40 mb-20 -mt-20 lg:-mt-10">
-      <div className="pt-10 pb-6">
+      <div className="pt-20 lg:pt-10 pb-6">
         <Navbar></Navbar>
       </div>
       {noCard ? (
