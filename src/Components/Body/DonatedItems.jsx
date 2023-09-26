@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const DonatedItems = ({ card }) => {
+const DonatedItems = ({ card, onDonation }) => {
   const {
     id,
-    card_image,
+    description_image,
     category,
     title,
     price,
@@ -26,14 +26,18 @@ const DonatedItems = ({ card }) => {
     color: `${text_color}`,
   };
 
+  const handleDonateClick = () => {
+    onDonation(price);
+  };
+
   return (
     <div
       style={titleBgStyle}
       className="md:flex items-center gap-10 lg:gap-6 rounded-xl"
     >
       <img
-        className="w-full md:w-auto md:h-full rounded-t-xl md:rounded-r-[0px] md:rounded-l-xl"
-        src={card_image}
+        className="w-full md:w-auto md:h-52 rounded-t-xl md:rounded-r-[0px] md:rounded-l-xl"
+        src={description_image}
         alt=""
       />
       <div style={textStyle} className="p-6 md:py-6 md:px-0">
@@ -49,6 +53,7 @@ const DonatedItems = ({ card }) => {
         <p className="font-semibold pb-5">${price}</p>
         <Link to={`../card/${id}`}>
           <button
+            onClick={handleDonateClick}
             style={textBgStyle}
             className="btn btn-ghost normal-case text-lg font-semibold text-white w-full md:w-auto"
           >
@@ -62,6 +67,7 @@ const DonatedItems = ({ card }) => {
 
 DonatedItems.propTypes = {
   card: PropTypes.object.isRequired,
+  onDonation: PropTypes.func.isRequired,
 };
 
 export default DonatedItems;
