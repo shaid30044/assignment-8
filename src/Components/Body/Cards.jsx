@@ -2,15 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const Cards = ({ card }) => {
-  const {
-    id,
-    description_image,
-    category,
-    title,
-    text_color,
-    category_bg_color,
-    title_bg_color,
-  } = card;
+  const { text_color, category_bg_color, title_bg_color } = card;
 
   const categoryBgStyle = {
     backgroundColor: `${category_bg_color}`,
@@ -24,11 +16,11 @@ const Cards = ({ card }) => {
 
   return (
     <div>
-      <Link to={`card/${id}`}>
+      <Link to={`card/${card.id}`}>
         <div style={titleBgStyle} className="rounded-xl">
           <img
-            className="w-full h-48 rounded-t-xl"
-            src={description_image}
+            className="w-full md:h-48 rounded-t-xl"
+            src={card.description_image}
             alt=""
           />
           <div style={textStyle} className="p-4">
@@ -37,10 +29,10 @@ const Cards = ({ card }) => {
                 style={categoryBgStyle}
                 className="rounded-[4px] px-[10px] pt-[2px] pb-[3px]"
               >
-                {category}
+                {card.category}
               </span>
             </p>
-            <h1 className="text-xl font-semibold pt-2">{title}</h1>
+            <h1 className="text-xl font-semibold pt-2">{card.title}</h1>
           </div>
         </div>
       </Link>
@@ -49,7 +41,7 @@ const Cards = ({ card }) => {
 };
 
 Cards.propTypes = {
-  card: PropTypes.object.isRequired,
+  card: PropTypes.object,
 };
 
 export default Cards;

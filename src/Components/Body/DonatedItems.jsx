@@ -36,7 +36,7 @@ const DonatedItems = ({ card, onDonation }) => {
       className="md:flex items-center gap-10 lg:gap-6 rounded-xl"
     >
       <img
-        className="w-full md:w-auto md:h-52 rounded-t-xl md:rounded-r-[0px] md:rounded-l-xl"
+        className="w-full md:w-72 md:h-52 rounded-t-xl md:rounded-r-[0px] md:rounded-l-xl"
         src={description_image}
         alt=""
       />
@@ -67,7 +67,7 @@ const DonatedItems = ({ card, onDonation }) => {
 
 DonatedItems.propTypes = {
   card: PropTypes.object.isRequired,
-  onDonation: PropTypes.func.isRequired,
+  onDonation: PropTypes.func,
 };
 
 export default DonatedItems;

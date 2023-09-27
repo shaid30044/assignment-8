@@ -6,33 +6,28 @@ import PropTypes from "prop-types";
 import { FiMinus } from "react-icons/fi";
 
 const Statistics = () => {
-  const [myDonation, setMyDonation] = useState(0);
   const cards = useLoaderData();
 
-  useEffect(() => {
-    const donatedItems = JSON.parse(localStorage.getItem("donate"));
+  const [myDonation = 0, setMyDonation] = useState(0);
 
-    const myTotalDonation = donatedItems.reduce(
-      (preValue, currentValue) => preValue + currentValue.price,
-      0
-    );
+  useEffect(() => {
+    const donatedItems = JSON.parse(localStorage.getItem("donate")) || {};
+    const myTotalDonation = donatedItems.length;
 
     setMyDonation(myTotalDonation);
-  }, [cards]);
+  }, []);
 
-  const totalDonation = cards.reduce(
-    (preValue, currentValue) => preValue + currentValue.price,
-    0
-  );
+  const totalDonation = cards.length - myDonation;
 
   const data = [
     { name: "Total Donation", value: totalDonation },
-    { name: "My Donation", value: myDonation },
+    { name: "Your Donation", value: myDonation },
   ];
 
-  const COLORS = ["#00C49F", "#FF444A"];
+  const COLORS = ["#FF444A", "#00C49F"];
 
   const RADIAN = Math.PI / 180;
+
   const renderCustomizedLabel = ({
     cx,
     cy,
@@ -41,7 +36,7 @@ const Statistics = () => {
     outerRadius,
     percent,
   }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.4;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
@@ -52,8 +47,9 @@ const Statistics = () => {
         fill="white"
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
+        className="text-xl font-bold font-inter"
       >
-        {`${(percent * 100).toFixed(0)}%`}
+        {`${(percent * 100).toFixed(1)}%`}
       </text>
     );
   };
@@ -62,9 +58,9 @@ const Statistics = () => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="flex gap-1 font-medium color-2 backdrop-blur-lg bg-white/40 rounded-lg px-4 py-2">
-          <p>{data.name}:</p>
-          <p>${data.value}</p>
+        <div className="flex gap-1 font-medium font-inter color-2 backdrop-blur-lg bg-white/40 rounded-lg px-4 py-2">
+          <p>{data.name}</p>
+          <p>{data.value}</p>
         </div>
       );
     }
@@ -72,20 +68,20 @@ const Statistics = () => {
   };
 
   const CustomLegend = () => (
-    <div className="flex justify-between items-center gap-3 pt-4">
+    <div className="flex justify-between items-center gap-2 font-inter pt-4">
       <div className="flex items-center gap-[2px]">
+        <span className="text=lg font-semibold">Your Donation</span>
         <FiMinus
           style={{ color: COLORS[1] }}
-          className="text-8xl -ml-4 -mr-3"
+          className="text-8xl -ml-3"
         ></FiMinus>
-        <span className="legend-label">My Donation</span>
       </div>
       <div className="flex items-center gap-[2px]">
+        <span className="text=lg font-semibold -mr-3">Total Donation</span>
         <FiMinus
           style={{ color: COLORS[0] }}
           className="text-8xl -mr-3"
         ></FiMinus>
-        <span className="legend-label">Total Donation</span>
       </div>
     </div>
   );

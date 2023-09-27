@@ -1,8 +1,9 @@
 import Banner from "./Banner";
 import Navbar from "./Navbar";
 import banner from "../../assets/banner.jpeg";
+import PropTypes from "prop-types";
 
-const Header = () => {
+const Header = ({ data }) => {
   return (
     <div className="relative">
       <div
@@ -14,10 +15,14 @@ const Header = () => {
       ></div>
       <div className="relative z-1 px-10 lg:px-40">
         <Navbar></Navbar>
-        <Banner></Banner>
+        <Banner data={data}></Banner>
       </div>
     </div>
   );
+};
+
+Header.propTypes = {
+  data: PropTypes.array.isRequired,
 };
 
 export default Header;
